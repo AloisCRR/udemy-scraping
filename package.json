@@ -1,0 +1,23 @@
+{
+  "name": "udemy-scraping",
+  "version": "1.0.0",
+  "description": "Get free udemy courses with high rating",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc-watch --OnSuccess \"node ./build/index.js\""
+  },
+  "keywords": [],
+  "author": "Alois Carrera",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.14.25",
+    "@types/node-fetch": "^2.5.8",
+    "tsc-watch": "^4.2.9",
+    "typescript": "^4.1.4"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
+    "node-fetch": "^2.6.1"
+  }
+}
