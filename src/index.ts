@@ -89,7 +89,7 @@ interface PostInfo {
           ?.replace(",", "");
 
         if (
-          parseFloat(courseRank) >= 3 &&
+          parseFloat(courseRank) >= 4.5 &&
           totalScores &&
           parseInt(totalScores) > 100
         )
