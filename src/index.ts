@@ -77,16 +77,15 @@ interface PostInfo {
         )
           .text()
           .replace(",", ".");
+
         const totalScores = $(
           '.styles--rating-wrapper--5a0Tr[data-purpose="rating"]'
         )
-          .clone()
           .children()
-          .remove()
-          .end()
+          .last()
           .text()
           .match(/\d+([.,]\d+)?/)?.[0]
-          ?.replace(",", "");
+          ?.replace(",", ".");
 
         if (
           parseFloat(courseRank) >= 4.5 &&
