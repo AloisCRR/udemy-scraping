@@ -1,5 +1,5 @@
-import fetch from "node-fetch";
 import cheerio from "cheerio";
+import fetch from "node-fetch";
 
 interface Post {
   id: number;
@@ -38,7 +38,7 @@ interface PostInfo {
   try {
     const data = await fetch(process.env.PAGE_ENDPOINT || "error");
 
-    const jsonData = await data.json();
+    const jsonData = (await data.json()) as Post[];
 
     const posts: PostInfo[] = jsonData.map(
       (post: Post): PostInfo => ({
@@ -72,15 +72,11 @@ interface PostInfo {
         const html = await udemyCourseResponse.text();
         const $ = cheerio.load(html);
 
-        const courseRank = $(
-          '.udlite-heading-sm.star-rating--rating-number--3lVe8[data-purpose="rating-number"]'
-        )
+        const courseRank = $('[data-purpose="rating-number"]')
           .text()
           .replace(",", ".");
 
-        const totalScores = $(
-          '.styles--rating-wrapper--5a0Tr[data-purpose="rating"]'
-        )
+        const totalScores = $('[data-purpose="rating"]')
           .children()
           .last()
           .text()
@@ -98,9 +94,11 @@ interface PostInfo {
       return;
     });
 
-    const result = await Promise.all(mostValuedUdemyCourses);
+    const result = (await Promise.all(mostValuedUdemyCourses)).filter(Boolean);
 
-    console.log(result.filter(Boolean));
+    console.log(result);
+
+    process.exit();
   } catch (error) {
     console.log(error);
   }
